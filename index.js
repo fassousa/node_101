@@ -1,12 +1,8 @@
-// Create custom event emitter
+const { readFile, readFileSync } = require('fs');
 
-const { EventEmitter } = require('events');
-const eventEmitter = new EventEmitter();
+const txt = readFileSync('./hello.txt', 'utf8');
 
-eventEmitter.on('lunch', () =>  {
-    console.log('tasty meal')
-})
-
-// Call event twice
-eventEmitter.emit('lunch');
-eventEmitter.emit('lunch');
+console.log(txt);
+// The second log only runs after the file has been read.
+// SYNC === BLOCKING
+console.log('Do this ASAP');
