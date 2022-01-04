@@ -1,9 +1,15 @@
+const express = require('express');
 const { readFile } = require('fs');
 
-readFile('./hello.txt', 'utf8', (err, txt) => {
-    console.log(txt)
+const app = express();
+
+app.get('/', (request, response) => {
+    readFile('./home.html', 'utf8', (err, html) => {
+        if (err) {
+            response.status(500).send('Sorry, we have a problem.')
+        }
+        response.send(html);
+    });
 });
 
-// Node registers a callback, executes the script and runs the 
-// callback when the file has been read.
-console.log('Do this ASAP');
+app.listen(process.env.PORT || 3000, () => console.log(`Available on http://localhost:3000`));
