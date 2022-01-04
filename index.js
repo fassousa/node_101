@@ -1,8 +1,9 @@
-const { readFile, readFileSync } = require('fs');
+const { readFile } = require('fs');
 
-const txt = readFileSync('./hello.txt', 'utf8');
+readFile('./hello.txt', 'utf8', (err, txt) => {
+    console.log(txt)
+});
 
-console.log(txt);
-// The second log only runs after the file has been read.
-// SYNC === BLOCKING
+// Node registers a callback, executes the script and runs the 
+// callback when the file has been read.
 console.log('Do this ASAP');
